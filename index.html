@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPORTFOLIO.ROSYXU</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Audiowide:wght@400&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Share Tech Mono', 'Orbitron', 'Courier New', monospace;
+            background: #000000;
+            color: #7a9cc6;
+            overflow-x: hidden;
+            image-rendering: pixelated;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: crisp-edges;
+            cursor: none;
+        }
+
+        /* Enhanced Digital Font Styling */
+        .pixel-font {
+            font-family: 'Share Tech Mono', 'Audiowide', monospace;
+            font-weight: normal;
+            text-rendering: optimizeSpeed;
+            -webkit-font-smoothing: none;
+            -moz-osx-font-smoothing: grayscale;
+            font-smooth: never;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .digital-title {
+            font-family: 'Audiowide', 'Share Tech Mono', monospace;
+            font-weight: 400;
+            text-rendering: optimizeSpeed;
+            -webkit-font-smoothing: none;
+            -moz-osx-font-smoothing: grayscale;
+            font-smooth: never;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        /* Enhanced Green Cursor with Highlight Effect */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: #00ff41;
+            pointer-events: none;
+            z-index: 9999;
+            image-rendering: pixelated;
+            box-shadow: 
+                0 0 0 2px #0a0a0a,
+                0 0 10px #00ff41,
+                0 0 20px #00ff41,
+                0 0 30px #00ff41,
+                inset 0 0 10px rgba(0, 255, 65, 0.3);
+            transition: all 0.1s ease;
+            border-radius: 2px;
+            animation: cursorPulse 2s infinite;
+        }
+
+        .cursor::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: radial-gradient(circle, rgba(0, 255, 65, 0.2) 0%, transparent 70%);
+            animation: cursorGlow 1.5s ease-in-out infinite alternate;
+        }
+
+        .cursor::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 6px;
+            height: 6px;
+            background: #ffffff;
+            border-radius: 1px;
+            box-shadow: 0 0 5px #00ff41;
+        }
+
+        @keyframes cursorPulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 
+                    0 0 0 2px #0a0a0a,
+                    0 0 10px #00ff41,
+                    0 0 20px #00ff41,
+                    0 0 30px #00ff41,
+                    inset 0 0 10px rgba(0, 255, 65, 0.3);
+            }
+            50% { 
+                transform: scale(1.1);
+                box-shadow: 
+                    0 0 0 2px #0a0a0a,
+                    0 0 15px #00ff41,
+                    0 0 30px #00ff41,
+                    0 0 45px #00ff41,
+                    inset 0 0 15px rgba(0, 255, 65, 0.5);
+            }
+        }
+
+        @keyframes cursorGlow {
+            0% { opacity: 0.3; transform: scale(1) translate(-5px, -5px); }
+            100% { opacity: 0.7; transform: scale(1.2) translate(-5px, -5px); }
+        }
+
+        /* Interactive cursor states */
+        .cursor.hover {
+            transform: scale(1.5);
+            background: #ff0040;
+            box-shadow: 
+                0 0 0 2px #0a0a0a,
+                0 0 15px #ff0040,
+                0 0 25px #ff0040,
+                0 0 35px #ff0040,
+                inset 0 0 15px rgba(255, 0, 64, 0.4);
+        }
+
+        .cursor.click {
+            transform: scale(0.8);
+            background: #40ff00;
+            box-shadow: 
+                0 0 0 2px #0a0a0a,
+                0 0 20px #40ff00,
+                0 0 40px #40ff00,
+                0 0 60px #40ff00,
+                inset 0 0 20px rgba(64, 255, 0, 0.6);
+        }
+
+        /* CRT Screen Effect */
+        .crt-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(0, 255, 65, 0.02),
+                    rgba(0, 255, 65, 0.02) 1px,
+                    transparent 1px,
+                    transparent 3px
+                );
+            animation: scanlines 0.15s linear infinite;
+        }
+
+        @keyframes scanlines {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(3px); }
+        }
+
+        /* Enhanced Glitch Effect */
+        .glitch {
+            position: relative;
+            animation: glitch 3s infinite;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            animation: glitchTop 0.4s infinite linear alternate-reverse;
+            color: #3300ff;
+            clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+        }
+
+        .glitch::after {
+            animation: glitchBottom 0.4s infinite linear alternate-reverse;
+            color: #caa2ee;
+            clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+        }
+
+        @keyframes glitch {
+            0%, 74%, 76%, 100% { transform: translate(0); }
+            75% { transform: translate(1px, -1px); }
+        }
+
+        @keyframes glitchTop {
+            0%, 50%, 99.9%, 100% { clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%); }
+            25% { clip-path: polygon(0 15%, 100% 15%, 100% 50%, 0 50%); }
+            75% { clip-path: polygon(0 0, 100% 0, 100% 20%, 0 20%); }
+        }
+
+        @keyframes glitchBottom {
+            0%, 25%, 99.9%, 100% { clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%); }
+            50% { clip-path: polygon(0 80%, 100% 80%, 100% 100%, 0 100%); }
+            75% { clip-path: polygon(0 70%, 100% 70%, 100% 100%, 0 100%); }
+        }
+
+        /* Enhanced Background */
+        .container {
+            position: relative;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 25% 25%, #001a0d 0%, transparent 40%),
+                radial-gradient(circle at 75% 75%, #0d1a00 0%, transparent 40%),
+                linear-gradient(45deg, #0a0a0a 25%, transparent 25%),
+                linear-gradient(-45deg, #0a0a0a 25%, transparent 25%);
+            background-size: 60px 60px, 60px 60px, 30px 30px, 30px 30px;
+            animation: bgShift 6s ease-in-out infinite;
+        }
+
+        @keyframes bgShift {
+            0%, 100% { background-position: 0 0, 0 0, 0 0, 0 0; }
+            50% { background-position: 30px 30px, -30px -30px, 15px 15px, -15px -15px; }
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 2px solid #00ff41;
+            z-index: 999;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 400;
+            color: #00ff41;
+            text-shadow: 
+                0 0 5px #00ff41,
+                0 0 10px #00ff41,
+                0 0 15px #00ff41,
+                2px 2px 0 #0a0a0a;
+            animation: logoFlicker 3s infinite;
+            font-family: 'Audiowide', monospace;
+            letter-spacing: 6px;
+        }
+
+        @keyframes logoFlicker {
+            0%, 85%, 100% { 
+                opacity: 1; 
+                text-shadow: 
+                    0 0 5px #00ff41,
+                    0 0 10px #00ff41,
+                    0 0 15px #00ff41,
+                    2px 2px 0 #0a0a0a;
+            }
+            90%, 95% { 
+                opacity: 0.8; 
+                text-shadow: 
+                    0 0 2px #00ff41,
+                    2px 2px 0 #0a0a0a;
+            }
+        }
+
+        .nav {
+            display: flex;
+            gap: 25px;
+            margin-top: 15px;
+        }
+
+        .nav a {
+            color: #00ff41;
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            border: 1px solid #00ff41;
+            padding: 10px 18px;
+            transition: all 0.1s ease;
+            background: #0a0a0a;
+            font-weight: normal;
+            letter-spacing: 2px;
+            font-family: 'Share Tech Mono', monospace;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav a:hover::before {
+            left: 100%;
+        }
+
+        .nav a:hover {
+            background: rgba(0, 255, 65, 0.1);
+            color: #ffffff;
+            box-shadow: 
+                0 0 10px rgba(0, 255, 65, 0.5),
+                inset 0 0 10px rgba(0, 255, 65, 0.1);
+            transform: translateY(-2px);
+            text-shadow: 0 0 5px #00ff41;
+        }
+
+        /* Page Content Containers */
+        .page {
+            display: none;
+            position: relative;
+            z-index: 100;
+            padding-top: 120px;
+            min-height: 100vh;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Home Page */
+        .main-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: calc(100vh - 120px);
+        }
+
+        .hero h1 {
+            font-size: clamp(4rem, 10vw, 8rem);
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: #00ff41;
+            text-shadow: 
+                0 0 10px #00ff41,
+                0 0 20px #00ff41,
+                0 0 30px #00ff41,
+                4px 4px 0 #0a0a0a;
+            letter-spacing: 8px;
+            animation: titleGlow 4s infinite;
+            font-family: 'Audiowide', monospace;
+        }
+
+        @keyframes titleGlow {
+            0%, 90%, 100% { 
+                transform: translate(0);
+                filter: brightness(1);
+                text-shadow: 
+                    0 0 10px #00ff41,
+                    0 0 20px #00ff41,
+                    0 0 30px #00ff41,
+                    4px 4px 0 #0a0a0a;
+            }
+            5% { 
+                transform: translate(-2px, 2px);
+                filter: brightness(1.3);
+                text-shadow: 
+                    0 0 15px #00ff41,
+                    0 0 25px #00ff41,
+                    0 0 35px #00ff41,
+                    4px 4px 0 #0a0a0a;
+            }
+            10% { 
+                transform: translate(2px, -2px);
+                filter: brightness(0.8);
+            }
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            color: #7a9cc6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+            text-shadow: 0 0 3px rgba(0, 255, 65, 0.3);
+            font-family: 'Share Tech Mono', monospace;
+            letter-spacing: 1px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 35px;
+            background: #0a0a0a;
+            color: #00ff41;
+            text-decoration: none;
+            font-weight: normal;
+            text-transform: uppercase;
+            border: 2px solid #00ff41;
+            font-size: 16px;
+            letter-spacing: 3px;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Share Tech Mono', monospace;
+            box-shadow: 
+                0 0 10px rgba(0, 255, 65, 0.3),
+                inset 0 0 10px rgba(0, 255, 65, 0.05);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.2), rgba(0, 255, 65, 0.4), transparent);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            color: #ffffff;
+            background: rgba(0, 255, 65, 0.1);
+            box-shadow: 
+                0 0 20px rgba(0, 255, 65, 0.6),
+                0 0 40px rgba(0, 255, 65, 0.3),
+                inset 0 0 20px rgba(0, 255, 65, 0.1);
+            transform: translateY(-3px);
+            text-shadow: 0 0 10px #00ff41;
+        }
+
+        /* Enhanced Particle System */
+        .particle-system {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            font-family: 'Share Tech Mono', monospace;
+            font-weight: normal;
+            font-size: 10px;
+            color: #00ff41;
+            text-shadow: 0 0 5px #00ff41;
+            animation: complexFloat linear infinite;
+        }
+
+        .particle.type-1 {
+            color: #40ff00;
+            text-shadow: 0 0 5px #40ff00;
+        }
+
+        .particle.type-2 {
+            color: #00ff80;
+            text-shadow: 0 0 5px #00ff80;
+        }
+
+        .particle.type-3 {
+            color: #80ff40;
+            text-shadow: 0 0 5px #80ff40;
+        }
+
+        @keyframes complexFloat {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            25% {
+                transform: translateY(75vh) translateX(50px) rotate(90deg) scale(1);
+            }
+            50% {
+                transform: translateY(50vh) translateX(-30px) rotate(180deg) scale(0.8);
+            }
+            75% {
+                transform: translateY(25vh) translateX(80px) rotate(270deg) scale(1.2);
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(-20px) rotate(360deg) scale(0.3);
+                opacity: 0;
+            }
+        }
+
+        /* Content Pages Styling */
+        .page-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .page-title {
+            font-size: 3.5rem;
+            color: #00ff41;
+            text-align: center;
+            margin-bottom: 50px;
+            text-shadow: 
+                0 0 10px #00ff41,
+                0 0 20px #00ff41,
+                2px 2px 0 #0a0a0a;
+            letter-spacing: 6px;
+            font-family: 'Audiowide', monospace;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .content-card {
+            background: rgba(0, 26, 13, 0.3);
+            border: 2px solid #00ff41;
+            padding: 30px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #00ff41, transparent, #00ff41);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .content-card:hover::before {
+            opacity: 0.3;
+        }
+
+        .content-card:hover {
+            background: rgba(0, 26, 13, 0.5);
+            box-shadow: 
+                0 0 20px rgba(0, 255, 65, 0.4),
+                inset 0 0 20px rgba(0, 255, 65, 0.1);
+            transform: scale(1.02);
+        }
+
+        .content-card h3 {
+            color: #00ff41;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-family: 'Share Tech Mono', monospace;
+            text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+        }
+
+        .content-card p {
+            color: #7a9cc6;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-family: 'Share Tech Mono', monospace;
+            letter-spacing: 1px;
+        }
+
+        .terminal-section {
+            background: #0a0a0a;
+            border: 2px solid #00ff41;
+            padding: 30px;
+            margin: 50px 0;
+            font-family: 'Share Tech Mono', monospace;
+            box-shadow: 
+                0 0 20px rgba(0, 255, 65, 0.2),
+                inset 0 0 20px rgba(0, 255, 65, 0.05);
+        }
+
+        .terminal-header {
+            color: #00ff41;
+            margin-bottom: 15px;
+            font-size: 16px;
+            text-shadow: 0 0 5px #00ff41;
+        }
+
+        .terminal-content {
+            color: #7a9cc6;
+            font-size: 14px;
+            line-height: 1.8;
+            letter-spacing: 1px;
+        }
+
+        .cursor-blink {
+            animation: blink 1s infinite;
+            color: #00ff41;
+            text-shadow: 0 0 5px #00ff41;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Interactive Elements */
+        .pixel-boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+        }
+
+        .pixel-box {
+            background: #0a0a0a;
+            border: 2px solid #00ff41;
+            padding: 30px 20px;
+            text-align: center;
+            cursor: none;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 0 10px rgba(0, 255, 65, 0.2),
+                inset 0 0 10px rgba(0, 255, 65, 0.05);
+        }
+
+        .pixel-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(45deg, transparent 40%, rgba(0, 255, 65, 0.1) 50%, transparent 60%);
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+        }
+
+        .pixel-box:hover::before {
+            transform: translateX(100%);
+        }
+
+        .pixel-box:hover {
+            background: rgba(0, 26, 13, 0.3);
+            box-shadow: 
+                0 0 25px rgba(0, 255, 65, 0.4),
+                inset 0 0 25px rgba(0, 255, 65, 0.1);
+            transform: scale(1.03);
+        }
+
+        .pixel-box h3 {
+            color: #00ff41;
+            font-size: 20px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-family: 'Share Tech Mono', monospace;
+            text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+        }
+
+        .pixel-box p {
+            color: #7a9cc6;
+            font-size: 14px;
+            line-height: 1.6;
+            font-family: 'Share Tech Mono', monospace;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px;
+            }
+
+            .nav {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: clamp(2rem, 8vw, 4rem);
+                letter-spacing: 4px;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .page-content {
+                padding: 30px 15px;
+            }
+
+            .cursor {
+                width: 16px;
+                height: 16px;
+            }
+        }
+        .modal {
+            display: none; /* 初始状态是隐藏的 */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* 保证它浮在最上面 */
+    }
+
+    .modal img, .modal video {
+         max-width: 90%;
+        max-height: 80%;
+        box-shadow: 0 0 30px rgba(255,255,255,0.2);
+        border-radius: 10px;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    @keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
+    }
+    .modal {
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+    }
+    .fade-in {
+        animation-name: fadeIn;
+    }
+
+    .fade-out {
+        animation-name: fadeOut;
+    }
+    </style>
+</head>
+<body>
+    <!-- Enhanced Green Cursor -->
+    <div class="cursor"></div>
+
+    <!-- CRT Overlay -->
+    <div class="crt-overlay"></div>
+
+    <!-- Enhanced Particle System -->
+    <div class="particle-system" id="particleSystem"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo digital-title">Rosy.xu</div>
+        <nav class="nav pixel-font">
+            <a href="#" data-page="home">[HOME]</a>
+            <a href="#" data-page="about">[ABOUT]</a>
+            <a href="#" data-page="work">[WORK]</a>
+            <a href="#" data-page="contact">[CONTACT]</a>
+        </nav>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- HOME PAGE -->
+        <section class="page active" id="home">
+            <div class="main-content">
+                <div class="hero">
+                    <h1 class="glitch digital-title" data-text="Welcome, ppl">Welcome, ppl</h1>
+                    <p class="pixel-font">CREATING PIXELATED WORLDS AND GLITCHED REALITIES<br>
+                    WHERE CODE MEETS CREATIVITY IN RETRO PERFECTION</p>
+                    <a href="#" class="cta-button pixel-font" data-page="work">[ENTER_MATRIX]</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT PAGE -->
+        <section class="page" id="about">
+            <div class="page-content">
+                <h1 class="page-title digital-title glitch" data-text="ABOUT">ABOUT</h1>
+                
+                <div class="content-grid">
+                    <div class="content-card">
+                        <h3 class="pixel-font">Bio</h3>
+                        <p>Hi, I'm Rosy;] An artistic, creative, goal-oriented multimedia designer. I design playful interactive scenes, virtual spaces and stories that evoke empathy. </p>
+                        <p>Digital media for me acts as a vivid, versatile character in the world, connecting people towards a future full of wonder, humor, color and delight.</p>
+                    </div>
+                    
+                    <div class="content-card">
+                        <h3 class="pixel-font">关于我</h3>
+                        <p>嗨! 我是徐榕;] 一名热诚的，富有同理心的，目标导向的多媒体设计师。我创造引起观者共鸣的有趣味性的交互体验场景、虚拟空间和叙事。</p>
+                        <p>数字媒体于我而言是一个充满可能性的多变的媒介，我关注细节，感兴趣如何利用交互设计来让这一媒介更好地为了产品的目标人群服务.</p>
+                        <p>目前我就读于芝加哥艺术学院大三，主修艺术与科技下的交互方向。</p>
+                    </div>
+                </div>
+
+                <div class="terminal-section">
+                    <div class="terminal-header pixel-font">$ skills I_have.txt</div>
+                    <div class="terminal-content pixel-font">
+                        > 2D: PS, AI, SKETCH, PROCREATE, AE, LR, PR<br>
+                        > 3D: UNITY, BLENDER, MAYA, RHINO, SUBSTANCEPAINTER <br>
+                        > OTHER: X-MIND, TOUCHDESIGNER, FIGMA, MADMAPPER<br>
+                        > CODE: JAVASCRIPT, PYTHON<br>
+                        > OFFICE: word, powerpoint, excel<span class="cursor-blink">_</span>
+                    </div>
+                </div>
+
+                <div class="pixel-boxes">
+                    <div class="pixel-box">
+                        <h3 class="pixel-font">LANGUAGE</h3>
+                        <p>ENGLISH - Fluent (IELTS7.5)</p>
+                        <p>中文 - 流利 (母语)</p>
+                    </div>
+                    <div class="pixel-box">
+                        <h3 class="pixel-font">INTERESTS</h3>
+                        <p>Game, film, coding, psychology, sound-making, cooking, wandering, new media stuff.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WORK PAGE -->
+        <section class="page" id="work">
+            <div class="page-content">
+                <h1 class="page-title digital-title glitch" data-text="WORK👁️">WORK👁️</h1>
+                
+                <div class="content-grid">
+                    <div class="content-card" onclick="showModal('images/neon_dreams.jpg', 'image')">
+                        <h3 class="pixel-font">NEON DREAMS</h3>
+                        <p>Interactive audio-visual installation featuring 4 scenes of meditation experiences interacted with audience by hand in real-time.</p>
+                        <p>Technologies: Touchdesigner, Python, Mediapipe, Custom Particle Engine</p>
+                    </div>
+                    
+                    <div class="content-card" onclick="showModal('images/hello_world.mp4', 'video')">
+                        <h3 class="pixel-font">HELLO WORLD</h3>
+                        <p>5'long serious game development where audience interacts and perceives the passage of time.</p>
+                        <p>Technologies: Unity, Blender, PS, Playmaker, Shader Programming</p>
+                    </div>
+                    
+                    <div class="content-card" onclick="showModal('images/just_fall.mov', 'video')">
+                        <h3 class="pixel-font">JUST FALL</h3>
+                        <p>Complete explorative game experience with the theme of conversation with inner self with text guide graphics and open world map.</p>
+                        <p>Technologies: Unity, Blender, Zbrush, Playmaker, Post-processing</p>
+                    </div>
+                    
+                    <div class="content-card" onclick="showModal('images/safehouse.mp4', 'video')">
+                        <h3 class="pixel-font">SAFEHOUSE</h3>
+                        <p>Multimedia projection installation featuring rendered moving-image projected on 3d-printed cermamics with a narrative story behind.</p>
+                        <p>Technologies: Modeled and Rendered Animation(Blender), 3D-printed Ceramics, Madmapper</p>
+                    </div>
+                </div>
+
+                <div class="terminal-section">
+                    <div class="terminal-header pixel-font">$ archive - projects/</div>
+                    <div class="terminal-content pixel-font">
+                        > drwxr-xr-x  12 rossin  staff   384 Jan 25 2025 neon_dreams/<br>
+                        > drwxr-xr-x   8 rossin  staff   256 Jan 20 2025 glitch_symphony/<br>
+                        > drwxr-xr-x  15 rossin  staff   480 Jan 15 2025 retro_arcade/<br>
+                        > drwxr-xr-x   6 rossin  staff   192 Jan 10 2025 digital_murals/<br>
+                        > -rw-r--r--   1 rossin  staff  1337 Jan 25 2025 secret_project.exe<br>
+                        > TOTAL: 47 PROJECTS | STATUS: ACTIVE_DEVELOPMENT<span class="cursor-blink">_</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT PAGE -->
+        <section class="page" id="contact">
+            <div class="page-content">
+                <h1 class="page-title digital-title glitch" data-text="CONTACT">CONTACT</h1>
+                
+                <div class="content-grid">
+                    <div class="content-card">
+                        <h3 class="pixel-font">COLLABORATION</h3>
+                        <p>Ready to pixelate your ideas? Let's create something extraordinary together.</p>
+                        <p>We work with artists, developers, brands, and dreamers who share our passion for digital craftsmanship.</p>
+                    </div>
+                    
+                    <div class="content-card">
+                        <h3 class="pixel-font">SERVICES</h3>
+                        <p>• Custom Pixel Art & Animation</p>
+                        <p>• Interactive Digital Installations</p>
+                        <p>• Game Development & Design</p>
+                        <p>• Retro Branding & Identity</p>
+                    </div>
+                </div>
+
+                <div class="terminal-section">
+                    <div class="terminal-header pixel-font">$ whoami && contact --info</div>
+                    <div class="terminal-content pixel-font">
+                        > EMAIL: hello@Rosy.xu<br>
+                        > DISCORD: ROSSIN#8BIT<br>
+                        > GITHUB: github.com/rossin-digital<br>
+                        > LOCATION: CYBERSPACE_QUADRANT_7<br>
+                        > AVAILABILITY: 24/7_DIGITAL_TIME<br>
+                        > RESPONSE_TIME: < 8_HOURS<br>
+                        > STATUS: READY_FOR_NEW_ADVENTURES<span class="cursor-blink">_</span>
+                    </div>
+                </div>
+
+                <div class="pixel-boxes">
+                    <div class="pixel-box">
+                        <h3 class="pixel-font">SMALL PROJECTS</h3>
+                        <p>Logo design, icons, simple animations. Perfect for startups and indie developers.</p>
+                    </div>
+                    <div class="pixel-box">
+                        <h3 class="pixel-font">MEDIUM PROJECTS</h3>
+                        <p>Complete game assets, interactive websites, brand identity packages.</p>
+                    </div>
+                    <div class="pixel-box">
+                        <h3 class="pixel-font">LARGE PROJECTS</h3>
+                        <p>Full game development, digital installations, comprehensive digital experiences.</p>
+                    </div>
+                    <div class="pixel-box">
+                        <h3 class="pixel-font">CUSTOM REQUESTS</h3>
+                        <p>Have something unique in mind? We love pushing the boundaries of pixel art.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Enhanced Green Cursor with Interactive States
+        const cursor = document.querySelector('.cursor');
+        let mouseX = 0, mouseY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            // Snap to 2px grid for smoother pixelated movement
+            mouseX = Math.floor(e.clientX / 2) * 2;
+            mouseY = Math.floor(e.clientY / 2) * 2;
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+        });
+
+        // Interactive cursor states
+        document.addEventListener('mousedown', () => {
+            cursor.classList.add('click');
+        });
+
+        document.addEventListener('mouseup', () => {
+            cursor.classList.remove('click');
+        });
+
+        // Hover effects for interactive elements
+        const interactiveElements = document.querySelectorAll('a, .pixel-box, .content-card, .cta-button');
+        
+        interactiveElements.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+            });
+        });
+
+        // Enhanced Particle System with Green Theme
+        function createEnhancedParticle() {
+            const chars = ['0', '1', 'X', '+', '*', '◆', '◇', '◈', '●', '○', '■', '□', '▲', '△', '>', '<', '|', '-', '='];
+            const types = ['', 'type-1', 'type-2', 'type-3'];
+            
+            const particle = document.createElement('div');
+            particle.className = 'particle ' + types[Math.floor(Math.random() * types.length)];
+            particle.textContent = chars[Math.floor(Math.random() * chars.length)];
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.animationDuration = (4 + Math.random() * 6) + 's';
+            particle.style.fontSize = (8 + Math.random() * 6) + 'px';
+            particle.style.animationDelay = Math.random() * 2 + 's';
+            
+            document.getElementById('particleSystem').appendChild(particle);
+
+            setTimeout(() => {
+                if (particle.parentNode) {
+                    particle.parentNode.removeChild(particle);
+                }
+            }, 12000);
+        }
+
+        // Create particles at regular intervals
+        setInterval(createEnhancedParticle, 150);
+
+        // Page Navigation System
+        const navLinks = document.querySelectorAll('[data-page]');
+        const pages = document.querySelectorAll('.page');
+
+        function showPage(pageId) {
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                
+                // Add page transition effect
+                targetPage.style.opacity = '0';
+                targetPage.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    targetPage.style.opacity = '1';
+                    targetPage.style.transform = 'translateY(0)';
+                    targetPage.style.transition = 'all 0.4s ease';
+                }, 50);
+            }
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageId = link.getAttribute('data-page');
+                showPage(pageId);
+                
+                // Enhanced click effect with green theme
+                link.style.transform = 'scale(0.95)';
+                link.style.boxShadow = '0 0 15px rgba(0, 255, 65, 0.8)';
+                setTimeout(() => {
+                    link.style.transform = 'scale(1)';
+                    link.style.boxShadow = '';
+                }, 150);
+            });
+        });
+
+        // Enhanced Interactive Effects
+        document.querySelectorAll('.pixel-box, .content-card').forEach(box => {
+            box.addEventListener('click', function() {
+                // Create enhanced glitch effect with green theme
+                this.style.animation = 'none';
+                this.style.transform = 'scale(1.08) rotate(0.8deg)';
+                this.style.filter = 'hue-rotate(30deg) brightness(1.3)';
+                this.style.boxShadow = '0 0 30px rgba(0, 255, 65, 0.6)';
+                
+                setTimeout(() => {
+                    this.style.transform = 'scale(1) rotate(0deg)';
+                    this.style.filter = 'none';
+                    this.style.boxShadow = '';
+                }, 250);
+            });
+        });
+
+        // Enhanced random glitch effects
+        function enhancedRandomGlitch() {
+            const elements = document.querySelectorAll('.pixel-box, .content-card, .logo, .page-title');
+            const randomEl = elements[Math.floor(Math.random() * elements.length)];
+            
+            const glitchTypes = [
+                { 
+                    transform: 'translate(-2px, 2px)', 
+                    filter: 'hue-rotate(120deg) brightness(1.2)',
+                    boxShadow: '0 0 15px rgba(0, 255, 65, 0.4)'
+                },
+                { 
+                    transform: 'translate(2px, -2px)', 
+                    filter: 'contrast(1.3) saturate(1.5)',
+                    boxShadow: '0 0 20px rgba(64, 255, 0, 0.3)'
+                },
+                { 
+                    transform: 'scale(1.03) skew(0.5deg)', 
+                    filter: 'brightness(1.4)',
+                    boxShadow: '0 0 25px rgba(0, 255, 128, 0.4)'
+                }
+            ];
+            
+            const glitch = glitchTypes[Math.floor(Math.random() * glitchTypes.length)];
+            
+            randomEl.style.transform = glitch.transform;
+            randomEl.style.filter = glitch.filter;
+            randomEl.style.boxShadow = glitch.boxShadow;
+            randomEl.style.transition = 'all 0.1s ease';
+            
+            setTimeout(() => {
+                randomEl.style.transform = '';
+                randomEl.style.filter = '';
+                randomEl.style.boxShadow = '';
+            }, 200);
+        }
+
+        // Trigger random glitches
+        setInterval(enhancedRandomGlitch, 3000);
+
+        // Enhanced keyboard shortcuts with sound-like feedback
+        document.addEventListener('keydown', (e) => {
+            const keyActions = {
+                '1': () => showPage('home'),
+                '2': () => showPage('about'), 
+                '3': () => showPage('work'),
+                '4': () => showPage('contact'),
+                'Escape': () => showPage('home')
+            };
+            
+            if (keyActions[e.key]) {
+                e.preventDefault();
+                keyActions[e.key]();
+                
+                // Visual feedback for keyboard navigation
+                document.body.style.filter = 'brightness(1.1) hue-rotate(30deg)';
+                setTimeout(() => {
+                    document.body.style.filter = '';
+                }, 100);
+            }
+        });
+
+        // Enhanced startup sequence
+        window.addEventListener('load', () => {
+            // Create dramatic startup effect
+            const startupOverlay = document.createElement('div');
+            startupOverlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: #0a0a0a;
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: 'Share Tech Mono', monospace;
+                color: #00ff41;
+                font-size: 24px;
+                text-shadow: 0 0 20px #00ff41;
+                animation: fadeOut 2s ease-in-out forwards;
+                animation-delay: 1s;
+            `;
+            startupOverlay.innerHTML = 'INITIALIZING DIGITAL MATRIX...';
+            
+            document.body.appendChild(startupOverlay);
+            
+            setTimeout(() => {
+                if (startupOverlay.parentNode) {
+                    startupOverlay.parentNode.removeChild(startupOverlay);
+                }
+            }, 3000);
+        });
+
+        // Add CSS animation for startup
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeOut {
+                0% { opacity: 1; }
+                70% { opacity: 1; }
+                100% { opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+    <div id="myModal" class="modal">
+        <img id="modalImage" style="display: none;" />
+        <video id="modalVideo" controls style="display: none; max-width: 90%; max-height: 80%;"></video>
+    </div>
+    <script>
+        function showModal(source, type) {
+            const modal = document.getElementById('myModal');
+            const image = document.getElementById('modalImage');
+            const video = document.getElementById('modalVideo');
+    
+            image.style.display = 'none';
+            video.style.display = 'none';
+            video.pause();
+    
+            if (type === 'image') {
+                image.src = source;
+                image.style.display = 'block';
+            } else if (type === 'video') {
+                video.src = source;
+                video.style.display = 'block';
+            }
+    
+            modal.style.display = 'flex';
+
+            modal.style.display = "flex";
+            modal.classList.add("fade-in");
+    
+            // 点击模态背景关闭
+            modal.onclick = function(e) {
+             if (e.target === modal) {
+             modal.classList.remove("fade-in");
+                modal.classList.add("fade-out");
+
+                setTimeout(() => {
+                     modal.style.display = 'none';
+                     modal.classList.remove("fade-out");
+                     modalImage.src = '';
+                     modalVideo.src = '';
+                    }, 300); // 时间与 animation-duration 对应
+                }
+            };
+        }
+    </script>
+    
+</body>
+</html>

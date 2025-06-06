@@ -716,7 +716,7 @@
             }
         }
         .modal {
-            display: none; /* 初始状态是隐藏的 */
+            display: none; 
             position: fixed;
             top: 0;
             left: 0;
@@ -725,7 +725,7 @@
             background-color: rgba(0, 0, 0, 0.8);
             justify-content: center;
             align-items: center;
-            z-index: 9999; /* 保证它浮在最上面 */
+            z-index: 9999; 
     }
 
     .modal img, .modal video {
@@ -1199,8 +1199,7 @@
     const modal = document.getElementById('myModal');
     const image = document.getElementById('modalImage');
     const video = document.getElementById('modalVideo');
-    const iframe = document.getElementById('modalIframe'); // 新增iframe获取
-
+    const iframe = document.getElementById('modalIframe'); 
     image.style.display = 'none';
     video.style.display = 'none';
     iframe.style.display = 'none';
@@ -1269,7 +1268,7 @@ function showModal(content, type) {
             video.style.display = 'block';
         }
     } else if (type === 'set') {
-    // 显示多张图
+    
     content.images.forEach(src => {
         const img = document.createElement('img');
         img.src = src;
@@ -1278,7 +1277,6 @@ function showModal(content, type) {
         contentArea.appendChild(img);
     });
 
-    // 如果 video 存在，再创建并加入
     if (content.video) {
         const videoFrame = document.createElement('iframe');
         videoFrame.src = content.video;

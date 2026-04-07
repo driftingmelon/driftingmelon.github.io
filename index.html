@@ -22,6 +22,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rosy.xu --portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Share+Tech+Mono&display=block" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Audiowide:wght@400&display=swap');
         
@@ -72,7 +73,7 @@
             height: 20px;
             background: #00ff41;
             pointer-events: none;
-            z-index: 9999;
+            z-index: 99999;
             image-rendering: pixelated;
             box-shadow: 
                 0 0 0 2px #0a0a0a,
@@ -627,6 +628,12 @@
             letter-spacing: 1px;
         }
 
+        .terminal-link:hover {
+        color: #00ff41;
+        text-shadow: 0 0 8px #ff0040;
+        transform: translateX(3px);
+        }
+
         .cursor-blink {
             animation: blink 1s infinite;
             color: #00ff41;
@@ -888,6 +895,7 @@
                         <p>Technologies: UE5, Blender, Zbrush, Autorig, Metahuman&Mocap, Post-processing</p>
                     </div>
 
+
                 <div class="content-card" onclick="window.open('https://driftingmelon.github.io/NotASim/', '_blank')">
                         <h3 class="pixel-font">(Not) a Sim</h3>
                         <p>(Not) A creative code website.
@@ -932,14 +940,21 @@
                 <div class="terminal-section">
                     <div class="terminal-header pixel-font">$ archive - projects/under_construction</div>
                     <div class="terminal-content pixel-font">
-                        > saic-sem-2   interactive coding    -Mar 2025 panopticon_2.0/<br>
-                        > saic-sem-2   interactive coding    -Jan 2025 psychedelic_mirror/<br>
-                        > sta-sem-4   projection mapping    -May 2024 R&J_musical/2'34"<br>
-                        > sta-sem-3   2d animation    -Feb 2024 social_factory/1'30"<br>
-                        > sta-sem-2   stage design   -Jan 2024 panopticon_1.0<br>
-                        > STATUS: ACTIVE_DEVELOPMENT<span class="cursor-blink">_</span>
-                    </div>
-                </div>
+                        <div class="terminal-link" onclick="showModal({images:['images/bubble7.jpg'], video: 'https://www.youtube.com/embed/JJsHe6NmjLY'}, 'set')">
+                    > saic-sem-3   stage design animation    -Nov 2025 In the House/1'50"</div>
+                    
+                        <div class="terminal-link" onclick="showModal({images:['images/Meditator2.png','images/Meditator4.png','images/Meditator1.png','images/Meditator3.png']}, 'set')">       
+                    > saic-sem-3    robotics   -Sep 2025 Meditator</div>
+                        <div class="terminal-link" onclick="showModal({images:['images/R&J.jpg']}, 'set')">
+                    > sta-sem-4   projection mapping & stage design    -May 2024 R&J_musical</div>
+                     <div class="terminal-link" onclick="showModal({images:['images/ProjectionAll.png']}, 'set')">
+                    > sta-sem-3   projection installation   -Jan 2023 Moirae</div>
+                        <div class="terminal-link" onclick="showModal({images:['images/PanoAll.png']}, 'set')">
+                    > sta-sem-2   stage design   -June 2022 panopticon_1.0</div>
+
+        > STATUS: ACTIVE_DEVELOPMENT<span class="cursor-blink">_</span>
+    </div>
+</div>
              
                 <div class="ceramic-link" style="text-align:center; margin-top:20px;">
                 <a href="https://driftingmelon.github.io/cer/" target="_blank" style="font-size:2em; text-decoration:none;">🏺
@@ -1004,6 +1019,13 @@
     </div>
 
     <script src="toutouzoukai1.js"></script>
+    <script>
+    // 让 .terminal-link hover时光标也变红
+    document.querySelectorAll('.terminal-link').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+    </script>
 
     <div id="myModal" class="modal">
         <img id="modalImage" style="display: none;" />
